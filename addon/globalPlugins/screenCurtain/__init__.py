@@ -63,6 +63,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		winMagnification.SetFullscreenColorEffect(byref(TRANSFORM_BLACK))
 		winMagnification.Uninitialize()
 		self._screenCurtainActive = False
+		if hasattr(gui.settingsDialogs, "SettingsPanel"):
+			gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(ScreenCurtainPanel)
 		try:
 			if wx.version().startswith("4"):
 				self.toolsMenu.Remove(self.toggleScreenCurtain)
